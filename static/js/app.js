@@ -30,3 +30,41 @@ data.forEach(function(ufoData) {
         cell.text(value);
     });
 });
+
+// ***NEED TO SEE WHAT'S GOING ON IN THIS SECTION TO CAUSE AN EXCEPTION***
+
+// select the button
+var button = d3.select("#filter-btn");
+
+// select the form
+var form = d3.select("#form-group");
+
+// event handlers for clicking button or pressing enter
+button.on("click", runEnter);
+form.on("submit", runEnter);
+
+// function to run for both events (button click or pressing enter)
+
+function runEnter() {
+
+    // prevent the page from refreshing
+    d3.event.preventDefault();
+
+    // select input element
+    var inputElement = d3.select("#form-control");
+
+    // get value out of input element
+    var inputValue = inputElement.property("value");
+
+    // print input value to console
+    console.log(inputValue);
+};
+
+// // track button clicks on the page
+// d3.selectAll("button").on("click", function () {
+//     console.log("button was clicked")
+//     console.log(this);
+// });
+
+
+// get reference to input element
