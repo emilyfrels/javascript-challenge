@@ -19,13 +19,13 @@ data.forEach(function(ufoData) {
     var row = tbody.append("tr");
 
     
-    // add each ufo data value
+    // append cell for table data 'td' and append values to cell
     Object.entries(ufoData).forEach(function([key, value]) {
         console.log(key, value);
 
         // append a cell to the row for each value
         var cell = row.append("td");
-        
+
         // append value to each cell
         cell.text(value);
     });
