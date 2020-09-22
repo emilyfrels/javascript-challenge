@@ -31,13 +31,12 @@ data.forEach(function(ufoData) {
     });
 });
 
-// ***NEED TO SEE WHAT'S GOING ON IN THIS SECTION TO CAUSE AN EXCEPTION***
 
 // select the button
 var button = d3.select("#filter-btn");
 
 // select the form
-var form = d3.select("#form-group");
+var form = d3.select("#form");
 
 // event handlers for clicking button or pressing enter
 button.on("click", runEnter);
@@ -51,20 +50,23 @@ function runEnter() {
     d3.event.preventDefault();
 
     // select input element
-    var inputElement = d3.select("#form-control");
+    var inputElement = d3.select("#datetime.form-control");
 
     // get value out of input element
     var inputValue = inputElement.property("value");
 
     // print input value to console
+    console.log("The date value entered was: ");
     console.log(inputValue);
+
+    // create variable for filtered data
+    var filteredData = tableData.filter(ufoData => ufoData.datetime === inputValue);
+
+    console.log(filteredData);
+
+    // create an array with the datetime values
+    var dateValues = filteredData.map(ufoData => ufoData.datetime);
+
 };
 
-// // track button clicks on the page
-// d3.selectAll("button").on("click", function () {
-//     console.log("button was clicked")
-//     console.log(this);
-// });
 
-
-// get reference to input element
