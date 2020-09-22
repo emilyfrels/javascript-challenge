@@ -67,7 +67,7 @@ function runEnter() {
     // create variable for filtered data
     var filteredData = tableData.filter(ufoData => ufoData.datetime === inputValue);
 
-    // clear all current values
+    // clear all current values in table so new table with filtered results can be loaded
     d3.select("tbody").selectAll("tr").remove();
 
     filteredData.forEach(function(ufo) {
@@ -89,4 +89,9 @@ function runEnter() {
     });
 
 };
+
+// add city box to form
+var city = d3.select("li").append("label").text("Enter a City");
+var cityInput = d3.select("li").append("input").attr("class", "form-control").attr("id", "city");
+console.log("Added city form box.");
 
