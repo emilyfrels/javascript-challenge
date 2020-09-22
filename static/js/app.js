@@ -42,6 +42,11 @@ var form = d3.select("#form");
 button.on("click", runEnter);
 form.on("submit", runEnter);
 
+
+// event handlers for clicking button or pressing enter after a new date is entered
+button.on("change", runEnter);
+form.on("change", runEnter);
+
 // function to run for both events (button click or pressing enter)
 
 function runEnter() {
@@ -62,11 +67,26 @@ function runEnter() {
     // create variable for filtered data
     var filteredData = tableData.filter(ufoData => ufoData.datetime === inputValue);
 
-    console.log(filteredData);
+    // clear all current values
+    d3.select("tbody").selectAll("tr").remove();
 
-    // create an array with the datetime values
-    var dateValues = filteredData.map(ufoData => ufoData.datetime);
+    filteredData.forEach(function(ufo) {
+
+        var row = tbody.append("tr");
+
+            // append cell for table data 'td' and append values to cell
+        Object.entries(ufo).forEach(function([key, value]) {
+            console.log(key, value);
+
+            // append a cell to the row for each value
+            var cell = row.append("td");
+
+            // append value to each cell
+            cell.text(value);
+
+        });
+
+    });
 
 };
-
 
