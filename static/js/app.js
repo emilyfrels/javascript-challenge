@@ -12,8 +12,8 @@ console.log(tbody);
 
 data.forEach(function(ufoData) {
 
-    // console.log [because we can] to confirm pulling correct object data
-    console.log(ufoData);
+    // // console.log [because we can] to confirm pulling correct object data
+    // console.log(ufoData);
 
     // append the table row element
     var row = tbody.append("tr");
@@ -21,7 +21,9 @@ data.forEach(function(ufoData) {
     
     // append cell for table data 'td' and append values to cell
     Object.entries(ufoData).forEach(function([key, value]) {
-        console.log(key, value);
+        
+        // // confirm data is being gathered
+        // console.log(key, value);
 
         // append a cell to the row for each value
         var cell = row.append("td");
@@ -43,12 +45,9 @@ button.on("click", runEnter);
 form.on("submit", runEnter);
 
 
-// event handlers for clicking button or pressing enter after a new date is entered
-button.on("change", runEnter);
-form.on("change", runEnter);
+
 
 // function to run for both events (button click or pressing enter)
-
 function runEnter() {
 
     // prevent the page from refreshing
@@ -56,16 +55,21 @@ function runEnter() {
 
     // select input element
     var inputElement = d3.select("#datetime.form-control");
+    var cityInputElement = d3.select("#city.form-control");
 
     // get value out of input element
     var inputValue = inputElement.property("value");
+    var cityInputValue = cityInputElement.property("value");
 
     // print input value to console
-    console.log("The date value entered was: ");
-    console.log(inputValue);
+    console.log(`The date value entered was: ${inputValue}`);
+    console.log(`The city value entered was: ${cityInputValue}`);
 
-    // create variable for filtered data
-    var filteredData = tableData.filter(ufoData => ufoData.datetime === inputValue);
+    // create variable for filtered data *** NEED TO COME BACK AND CHECK THIS. IT NEEDS TO BE ABLE TO RETURN IF THEY ARE BOTH EQUAL, OTHERWISE IT NEEDS TO RETURN ONE OR THE OTHER? ***
+    var filteredData = tableData.filter(ufoData => ufoData.datetime === inputValue && ufoData.city === cityInputValue);
+
+    // IF DATE VALUE NOT NULL...
+
 
     // clear all current values in table so new table with filtered results can be loaded
     d3.select("tbody").selectAll("tr").remove();
@@ -93,5 +97,11 @@ function runEnter() {
 // add city box to form
 var city = d3.select("li").append("label").text("Enter a City");
 var cityInput = d3.select("li").append("input").attr("class", "form-control").attr("id", "city");
-console.log("Added city form box.");
+
+// // confirm city box was added
+// console.log("Added city form box.");
+
+// // event handlers for clicking button or pressing enter after a new date is entered
+// button.on("change", runEnter);
+// form.on("change", runEnter);
 
