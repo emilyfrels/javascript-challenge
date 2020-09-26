@@ -59,16 +59,12 @@ function runEnter() {
 
     // get value out of input element
     var inputValue = inputElement.property("value");
-    var cityInputValue = cityInputElement.property("value");
 
     // print input value to console
     console.log(`The date value entered was: ${inputValue}`);
-    console.log(`The city value entered was: ${cityInputValue}`);
 
-    // create variable for filtered data *** NEED TO COME BACK AND CHECK THIS. IT NEEDS TO BE ABLE TO RETURN IF THEY ARE BOTH EQUAL, OTHERWISE IT NEEDS TO RETURN ONE OR THE OTHER? ***
-    var filteredData = tableData.filter(ufoData => ufoData.datetime === inputValue && ufoData.city === cityInputValue);
-
-    // IF DATE VALUE NOT NULL...
+    // create variable for filtered data 
+    var filteredData = tableData.filter(ufoData => ufoData.datetime === inputValue);
 
 
     // clear all current values in table so new table with filtered results can be loaded
@@ -94,9 +90,9 @@ function runEnter() {
 
 };
 
-// add city box to form
-var city = d3.select("li").append("label").text("Enter a City");
-var cityInput = d3.select("li").append("input").attr("class", "form-control").attr("id", "city");
+// // add city box to form
+// var city = d3.select("li").append("label").text("Enter a City");
+// var cityInput = d3.select("li").append("input").attr("class", "form-control").attr("id", "city");
 
 // // confirm city box was added
 // console.log("Added city form box.");
